@@ -3,8 +3,7 @@ package com.uzbeklion.click
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("region")
-
+@RequestMapping("api/v1/click")
 class RegionController(
         private val regionService: RegionService
 ) {
@@ -16,4 +15,9 @@ class RegionController(
 
     @PostMapping
     fun add(@RequestParam name: String) = regionService.add(name)
+
+    @GetMapping("administrative")
+    fun getAllAdministrative(@RequestParam regionId: Int, @RequestParam startDate: Long, @RequestParam endDate: Long) = regionService.administrativeCrimeInfo(regionId, startDate, endDate)
+
 }
+
